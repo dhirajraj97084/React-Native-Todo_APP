@@ -162,9 +162,11 @@ export default function App() {
                   <Pressable
                     onPress={submitTask}
                     disabled={!canSubmit}
+                    hitSlop={6}
                     style={({ pressed }) => [
                       styles.mainButton,
                       editingId ? styles.mainButtonEdit : styles.mainButtonAdd,
+                      canSubmit && styles.mainButtonReady,
                       !canSubmit && styles.mainButtonDisabled,
                       !isTablet && styles.mainButtonMobileSpacing,
                       isTablet && styles.mainButtonTablet,
@@ -423,29 +425,43 @@ const styles = StyleSheet.create({
   mainButton: {
     borderRadius: 16,
     paddingHorizontal: 16,
-    paddingVertical: 13,
+    paddingVertical: 14,
+    minHeight: 52,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.18)",
     alignItems: "center",
     justifyContent: "center",
   },
   mainButtonMobileSpacing: {
-    marginTop: 10,
+    marginTop: 12,
+    width: "100%",
   },
   mainButtonTablet: {
-    minWidth: 160,
+    minWidth: 190,
   },
   mainButtonAdd: {
-    backgroundColor: "#34d399",
+    backgroundColor: "#22c55e",
   },
   mainButtonEdit: {
     backgroundColor: "#fbbf24",
   },
+  mainButtonReady: {
+    shadowColor: "#34d399",
+    shadowOpacity: 0.38,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
+  },
   mainButtonText: {
-    color: "#041019",
-    fontSize: 16,
+    color: "#f8fafc",
+    fontSize: 17,
     fontWeight: "800",
+    letterSpacing: 0.3,
   },
   mainButtonDisabled: {
-    opacity: 0.5,
+    opacity: 1,
+    backgroundColor: "#334155",
+    borderColor: "#475569",
   },
   errorText: {
     marginTop: 8,
